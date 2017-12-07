@@ -78,3 +78,22 @@ target_link_libraries(ROSAgent
 add_dependencies(ROSAgent ${${PROJECT_NAME}_EXPORTED_TARGETS})
 add_dependencies(ROSAgent ${catkin_EXPORTED_TARGETS})
 
+
+# Mark executables and/or libraries for installation 
+install(TARGETS MePublisher 
+	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(TARGETS collvoid_scoring_function
+  DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} 
+)
+ 
+install(TARGETS collvoid_local_planner
+  DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION} 
+) 
+
+
+# Mark cpp header files for installation
+install(DIRECTORY include/${PROJECT_NAME}/
+	DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
