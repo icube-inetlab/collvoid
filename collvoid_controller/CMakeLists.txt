@@ -12,3 +12,17 @@ catkin_package(
     INCLUDE_DIRS # TODO include
     LIBRARIES # TODO
 )
+
+install(PROGRAMS 
+	src/collvoid_controller/active_collision_avoidance.py
+	src/collvoid_controller/collvoid_visualizer.py
+	src/collvoid_controller/controller.py
+	src/collvoid_controller/controller_robots.py
+	src/collvoid_controller/detect_obstacles.py
+	src/collvoid_controller/people_tracker.py
+	src/collvoid_controller/__init__.py
+	src/collvoid_controller/position_share_controller.py
+	src/collvoid_controller/watchdog.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
