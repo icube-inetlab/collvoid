@@ -1,6 +1,13 @@
 <launch>
     <arg name="type" default="turtle" />
 
+    <arg name="odom_frame_id"   default="odom"/>
+    <arg name="base_frame_id"   default="base_footprint"/>
+    <arg name="global_frame_id" default="map"/>
+    <arg name="odom_topic" default="odom" />
+    <arg name="laser_topic" default="scan" />
+    <arg name="custom_param_file" default="$(find turtlebot_navigation)/param/dummy.yaml"/>
+
     <node pkg="move_base" type="move_base" respawn="false" name="move_base">
         <rosparam command="load" file="$(find collvoid_turtlebot)/params/costmap_common_$(arg type).yaml" ns="local_costmap" />
         <rosparam command="load" file="$(find collvoid_turtlebot)/params/costmap_common_$(arg type).yaml" ns="global_costmap" />
@@ -13,7 +20,8 @@
         <!--<param name="base_global_planner" value="global_planner/GlobalPlanner" />-->
         <param name="base_global_planner" value="navfn/NavfnROS" />-
         <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
-        <remap from="scan" to="/scan_filtered"/>
+    	<remap from="odom" to="$(arg odom_topic)"/>
+    	<remap from="scan" to="$(arg laser_topic)"/>
         <!--<param name="base_global_planner" value="collvoid_simple_global_planner/CollvoidSimpleGlobalPlanner" />-->
     </node>
 
